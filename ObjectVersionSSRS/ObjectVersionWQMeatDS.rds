@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="ObjectVersionWQMeatDS">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=SQL1S\PRODUCT;Initial Catalog=ObjectVersionWQMeat</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>50868174-121c-470b-a628-99c89552d651</DataSourceID>
+</RptDataSource>

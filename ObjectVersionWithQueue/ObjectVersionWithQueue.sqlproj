@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ObjectVersionWithQueue</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{7c7e16cd-496c-4353-aed9-5f97cc4c2971}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ObjectVersionWithQueue</RootNamespace>
+    <AssemblyName>ObjectVersionWithQueue</AssemblyName>
+    <ModelCollation>1049,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <CompatibilityMode>110</CompatibilityMode>
+    <ServiceBrokerOption>EnableBroker</ServiceBrokerOption>
+    <DefaultCollation>Cyrillic_General_CI_AS</DefaultCollation>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="FileGroups" />
+    <Folder Include="Security" />
+    <Folder Include="DWHSchema" />
+    <Folder Include="DWHSchema\FN" />
+    <Folder Include="DWHSchema\Tables" />
+    <Folder Include="DWHSchema\SP" />
+    <Folder Include="DWHSchema\Broker" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="FileGroups\DataStorage.sql" />
+    <Build Include="FileGroups\IntermediateDataStorage.sql" />
+    <Build Include="FileGroups\XmlStorage.sql" />
+    <Build Include="Security\1Cv8Log_Login.sql" />
+    <Build Include="Security\1Cv8Log_User.sql" />
+    <Build Include="Security\ObjVerOwner_User.sql" />
+    <Build Include="Security\ObjVerUser_Role.sql" />
+    <Build Include="DWHSchema\FN\DWHSchema_GetDiffObjOnLine.sql" />
+    <Build Include="DWHSchema\FN\DWHSchema_GetObjectDifferents.sql" />
+    <Build Include="DWHSchema\FN\DWHSchema_GetObjVersions.sql" />
+    <Build Include="DWHSchema\Tables\DWHSchema_BlackObjectList.sql" />
+    <Build Include="DWHSchema\Tables\DWHSchema_DBCodes.sql" />
+    <Build Include="DWHSchema\Tables\DWHSchema_Differents.sql" />
+    <Build Include="DWHSchema\Tables\DWHSchema_VersionsCompress.sql" />
+    <Build Include="DWHSchema\Tables\DWHSchema_VersionsObjectStorage.sql" />
+    <PostDeploy Include="Script.PostDeployment1.sql" />
+    <Build Include="DWHSchema\Broker\CheckVersionObjectContract.sql" />
+    <Build Include="DWHSchema\Broker\CheckVersionObjectQueue.sql" />
+    <Build Include="DWHSchema\Broker\CheckVersionObjectService.sql" />
+    <Build Include="DWHSchema\Broker\MessageTypeFrom.sql" />
+    <Build Include="DWHSchema\SP\DWHSchema_SendBrokerMessage.sql" />
+    <Build Include="DWHSchema\SP\DWHSchema_ProcessingQueueActivation.sql" />
+    <Build Include="Security\DWH_Schema.sql" />
+    <Build Include="DWHSchema\Tables\DWHSchema_ObjectVersionSequence.sql" />
+    <Build Include="DWHSchema\FN\DWHSchema_GetLogHostname.sql" />
+    <Build Include="DWHSchema\FN\DWHSchema_GetLogUserName.sql" />
+    <Build Include="DWHSchema\Tables\DWHSchema_VersionCompress2.sql" />
+    <Build Include="DWHSchema\Tables\DWHSchema_ErrorLog.sql" />
+    <Build Include="DWHSchema\Tables\dbo.DWHSchema_VersionCompress2_IDX.sql" />
+    <Build Include="DWHSchema\Tables\dbo.DWHSchema_VersionsObjectStorage_IDX.sql" />
+    <Build Include="DWHSchema\Tables\dbo.DWHSchema_Differents_IDX.sql" />
+    <Build Include="DWHSchema\SP\dbo.DWHSchema_DubleShoting.sql" />
+    <Build Include="DWHSchema\FN\DWHSchema_GetDiffObjOnLineByUUID.sql" />
+    <Build Include="DWHSchema\FN\DWHSchema_fnGetBinary1C.sql" />
+    <Build Include="DWHSchema\FN\DWHSchema_fnGetGuid1C.sql" />
+    <Build Include="DWHSchema\FN\dbo.DWHSchema_GetID.sql" />
+    <Build Include="DWHSchema\SP\dbo.ProcedureLog.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script.PreDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ObjectVersionWithQueue.publish.xml" />
+    <None Include="ObjectVersionWithQueueFISH.publish.publish.xml" />
+    <None Include="ObjectVersionWithQueueHalal.publish.publish.xml" />
+  </ItemGroup>
+</Project>

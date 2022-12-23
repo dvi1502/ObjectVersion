@@ -1,0 +1,8 @@
+﻿CREATE USER [ObjVerOwner]
+	WITHOUT LOGIN
+	WITH DEFAULT_SCHEMA = [DWHSchema]
+
+GO
+
+GRANT CONNECT TO [ObjVerOwner]
+GO

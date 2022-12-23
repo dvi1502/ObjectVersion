@@ -1,0 +1,82 @@
+﻿<xs:schema xmlns:tns="http://www.kolbasavs.ru/csb" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.kolbasavs.ru/csb" attributeFormDefault="unqualified" elementFormDefault="qualified">
+	<xs:complexType name="ArrivalGoodsDoc">
+		<xs:sequence>
+			<xs:element name="GoodsLine" type="tns:GoodsLine" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string" use="required"/>
+		<xs:attribute name="OrganizationID" type="xs:string" use="required"/>
+		<xs:attribute name="Description" type="xs:string" use="required"/>
+		<xs:attribute name="Date" type="xs:dateTime" use="required"/>
+		<xs:attribute name="Number" type="xs:string" use="required"/>
+		<xs:attribute name="SupplierID" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="Customer">
+		<xs:attribute name="ID" type="xs:string" use="required"/>
+		<xs:attribute name="DeletionMark" type="xs:boolean" use="required"/>
+		<xs:attribute name="Code" type="xs:string" use="required"/>
+		<xs:attribute name="Name" type="xs:string" use="required"/>
+		<xs:attribute name="FullName" type="xs:string"/>
+		<xs:attribute name="INN" type="xs:string"/>
+		<xs:attribute name="KPP" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="DataItems">
+		<xs:sequence>
+			<xs:element name="Goods" type="tns:Goods" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Customer" type="tns:Customer" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OrderSupplierDoc" type="tns:OrderSupplierDoc" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ArrivalGoodsDoc" type="tns:ArrivalGoodsDoc" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ReturnGoodsDoc" type="tns:ReturnGoodsDoc" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Goods">
+		<xs:sequence>
+			<xs:element name="StoregeUnit" type="tns:MeasureUnit" nillable="true" minOccurs="0"/>
+			<xs:element name="PriceUnit" type="tns:MeasureUnit" nillable="true" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string" use="required"/>
+		<xs:attribute name="ParentID" type="xs:string"/>
+		<xs:attribute name="DeletionMark" type="xs:boolean" use="required"/>
+		<xs:attribute name="IsFolder" type="xs:boolean" use="required"/>
+		<xs:attribute name="Code" type="xs:string" use="required"/>
+		<xs:attribute name="Name" type="xs:string" use="required"/>
+		<xs:attribute name="FullName" type="xs:string"/>
+		<xs:attribute name="ShelfLife" type="xs:integer"/>
+	</xs:complexType>
+	<xs:complexType name="GoodsLine">
+		<xs:attribute name="OwnerID" type="xs:string" use="required"/>
+		<xs:attribute name="NomenclatureID" type="xs:string" use="required"/>
+		<xs:attribute name="StorangeUnitID" type="xs:string" use="required"/>
+		<xs:attribute name="QuantityUnit" type="xs:decimal" use="required"/>
+		<xs:attribute name="Quantity" type="xs:decimal" use="required"/>
+		<xs:attribute name="TaxRate" type="xs:decimal" use="required"/>
+		<xs:attribute name="Amount" type="xs:decimal" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MeasureUnit">
+		<xs:attribute name="ID" type="xs:string" use="required"/>
+		<xs:attribute name="Name" type="xs:string" use="required"/>
+		<xs:attribute name="Сoefficient" type="xs:decimal" use="required"/>
+		<xs:attribute name="Weigth" type="xs:decimal" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="OrderSupplierDoc">
+		<xs:sequence>
+			<xs:element name="GoodsLine" type="tns:GoodsLine" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string" use="required"/>
+		<xs:attribute name="OrganizationID" type="xs:string" use="required"/>
+		<xs:attribute name="Description" type="xs:string" use="required"/>
+		<xs:attribute name="Date" type="xs:dateTime" use="required"/>
+		<xs:attribute name="Number" type="xs:string" use="required"/>
+		<xs:attribute name="SupplierID" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="ReturnGoodsDoc">
+		<xs:sequence>
+			<xs:element name="GoodsLine" type="tns:GoodsLine" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:string" use="required"/>
+		<xs:attribute name="OrganizationID" type="xs:string" use="required"/>
+		<xs:attribute name="Description" type="xs:string" use="required"/>
+		<xs:attribute name="Date" type="xs:dateTime" use="required"/>
+		<xs:attribute name="Number" type="xs:string" use="required"/>
+		<xs:attribute name="SupplierID" type="xs:string" use="required"/>
+	</xs:complexType>
+</xs:schema>
